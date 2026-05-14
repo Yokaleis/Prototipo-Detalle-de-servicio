@@ -91,7 +91,7 @@ export default function RecipeSection() {
     <section className="bg-white rounded-xl">
       {/* Section header */}
       <div className="flex items-center justify-between px-5 py-4">
-        <h3 className="text-base font-semibold text-gray-800">Récipe y medicamentos</h3>
+        <h3 className="text-base font-semibold text-gray-800">Medicamentos</h3>
         <button className="flex items-center gap-1.5 text-xs font-medium text-teal-600 border border-teal-200 bg-teal-50 hover:bg-teal-100 px-3 py-1.5 rounded-lg transition-colors">
           <Calculator size={13} />
           Calcular dosis

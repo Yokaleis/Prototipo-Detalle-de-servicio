@@ -71,10 +71,10 @@ export default function InfoAfiliado() {
   const conductores = ['Carlos Quintero', 'Roberto Medina', 'Yolanda Soto', 'Edwin Fuentes']
 
   return (
-    <section className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+    <section className="bg-white rounded-xl overflow-hidden">
 
       {/* ── Section title ── */}
-      <div className="px-5 py-4 border-b border-gray-100">
+      <div className="px-5 py-4">
         <h3 className="text-base font-semibold text-gray-800">Información del afiliado</h3>
       </div>
 
