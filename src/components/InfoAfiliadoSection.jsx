@@ -75,15 +75,15 @@ export default function InfoAfiliado() {
 
       {/* ── Section title ── */}
       <div className="px-5 py-4">
-        <h3 className="text-base font-semibold text-gray-800">Información del afiliado</h3>
+        <h3 className="text-base font-semibold text-black">Información del afiliado</h3>
       </div>
 
       <div className="p-5 space-y-5">
 
         {/* Row 1: Nombre · Sexo · Cédula · Fecha nacimiento · Edad */}
         <div className="grid grid-cols-12 gap-3">
-          <div className="col-span-4">
-            <ReadField label="Nombres y Apellidos" value="Laura Gutiérrez Ríos" />
+          <div className="col-span-4" >
+            <ReadField label="Nombres y Apellidos " value="Laura Gutiérrez Ríos" />
           </div>
           <div className="col-span-2">
             <ReadField label="Sexo" value="Femenino" />
@@ -183,7 +183,7 @@ export default function InfoAfiliado() {
               onChange={e => setDireccion(e.target.value)}
               onBlur={() => setEditingDir(false)}
               autoFocus
-              className="w-full border border-teal-400 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white"
+              className="w-full border border-teal-400 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white"
             />
           ) : (
             <div className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-600 bg-white">
@@ -196,10 +196,11 @@ export default function InfoAfiliado() {
         <div className="w-48">
           <ReadField label="Sede" value="UC - Acarigua" />
         </div>
-
+        {/* Divider */}
+        <div className="border bottom-1"></div>
         {/* ── Tripulación ── */}
-        <div className="pt-3 border-t border-gray-100">
-          <h4 className="text-base font-semibold text-gray-800 mb-4">Tripulación</h4>
+        <div className="">
+          <h4 className="text-base font-semibold text-black mb-4">Tripulación</h4>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <SelectField
               label="Vehículo"
