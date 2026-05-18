@@ -21,10 +21,12 @@ import SedeBlockedModal from './SedeBlockedModal'
 // ── Constantes de datos ──────────────────────────────────────
 
 const SEDES = [
-  'UC - La Candelaria',
-  'UC - Maracay',
-  'UC - Lechería',
-  'UC - Bello Monte',
+  'Caracas',
+  'La Candelaria',
+  'Lechería',
+  'Valencia',
+  'Maracay',
+  'Maracaibo'
 ]
 
 const PRINCIPIOS = [
@@ -35,6 +37,14 @@ const PRINCIPIOS = [
 const PRESENTACIONES = [
   'Tabletas', 'Cápsulas', 'Jarabe', 'Suspensión',
   'Inyectable', 'Crema', 'Gotas',
+]
+
+// Catálogo de insumos/equipo médico disponibles para seleccionar
+const INSUMOS = [
+  'Tensiómetro', 'Oxímetro de pulso', 'Glucómetro', 'Estetoscopio',
+  'Termómetro digital', 'Nebulizador', 'Silla de ruedas', 'Muletas',
+  'Camilla portátil', 'Desfibrilador portátil', 'Bomba de infusión',
+  'Monitor de signos vitales',
 ]
 
 // Estado vacío del formulario de medicamentos
@@ -70,14 +80,22 @@ export default function RecipeSection() {
   const [otroError, setOtroError]                 = useState('')
   const [otrosMedicamentos, setOtrosMedicamentos] = useState([])
 
+  // ── Estado: Formulario de insumos/equipo ──
+  const [insumoSeleccionado, setInsumoSeleccionado] = useState('')
+  const [insumoCantidad, setInsumoCantidad]         = useState('')
+  const [insumoError, setInsumoError]               = useState('')
+
+  // ── Estado: Listado de insumos agregados ──
+  const [insumos, setInsumos] = useState([])
+
   // ── Computed ──────────────────────────────────────────────
 
   // ¿Hay alguna sede seleccionada?
   const sedeSelected = sede !== ''
 
-  // Total de ítems agregados (medicamentos + otros medicamentos)
+  // Total de ítems agregados (medicamentos + otros medicamentos + insumos)
   // Se usa para mostrar cuántos tiene el usuario en el modal
-  const totalItems = medicamentos.length + otrosMedicamentos.length
+  const totalItems = medicamentos.length + otrosMedicamentos.length + insumos.length
 
   // ── Handlers: Sede ───────────────────────────────────────
 
@@ -122,9 +140,13 @@ export default function RecipeSection() {
   const handleClearAndSwitch = () => {
     setMedicamentos([])         // borrar listado de medicamentos
     setOtrosMedicamentos([])    // borrar listado de otros medicamentos
+    setInsumos([])              // borrar listado de insumos
     setForm(emptyForm)          // limpiar formulario
     setError('')
     setOtroError('')
+    setInsumoError('')
+    setInsumoSeleccionado('')
+    setInsumoCantidad('')
     setSede(pendingSedeRef.current) // aplicar la nueva sede
     pendingSedeRef.current = ''
     setModalOpen(false)
@@ -194,6 +216,40 @@ export default function RecipeSection() {
     setOtrosMedicamentos(prev => prev.filter(m => m.id !== id))
   }
 
+  // ── Handlers: Insumos/equipo ──────────────────────────────
+
+  /**
+   * handleAgregarInsumo
+   * Valida y agrega un insumo al listado de equipo.
+   */
+  const handleAgregarInsumo = () => {
+    if (!insumoSeleccionado) {
+      setInsumoError('Selecciona un insumo antes de agregar.')
+      return
+    }
+    if (!insumoCantidad || Number(insumoCantidad) < 1) {
+      setInsumoError('Indica una cantidad válida.')
+      return
+    }
+    setInsumos(prev => [
+      ...prev,
+      {
+        id: Date.now(),
+        equipo: insumoSeleccionado,
+        cantidad: insumoCantidad,
+      },
+    ])
+    // Resetear formulario de insumos
+    setInsumoSeleccionado('')
+    setInsumoCantidad('')
+    setInsumoError('')
+  }
+
+  /** Elimina un insumo del listado por id */
+  const handleEliminarInsumo = (id) => {
+    setInsumos(prev => prev.filter(i => i.id !== id))
+  }
+
   // ── Render ───────────────────────────────────────────────
 
   return (
@@ -210,11 +266,11 @@ export default function RecipeSection() {
       />
 
       {/* ── Sección principal ─────────────────────────────── */}
-      <section className="bg-white rounded-xl border border-gray-100 shadow-sm">
+      <section>
 
         {/* ── Cabecera de sección ── */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
-          <h3 className="text-base font-semibold text-gray-800">Medicamentos</h3>
+        <div className="flex items-center justify-between px-5 py-4 ">
+          <h3 className="text-base font-semibold text-black">Medicamentos</h3>
           <button className="flex items-center gap-1.5 text-xs font-medium text-teal-600 border border-teal-200 bg-teal-50 hover:bg-teal-100 px-3 py-1.5 rounded-lg transition-colors">
             <Calculator size={13} />
             Calcular dosis
@@ -224,7 +280,7 @@ export default function RecipeSection() {
         <div className="p-5 space-y-5">
 
           {/* ── Alerta de exclusiones médicas ── */}
-          <div className="bg-red-50 border border-red-100 rounded-md p-4 flex items-center gap-4">
+          <div className="bg-red-50 border border-red-100 rounded-xl p-4 flex items-center gap-4">
             <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0">
               <AlertTriangle size={18} className="text-red-500" />
             </div>
@@ -233,7 +289,7 @@ export default function RecipeSection() {
                 Consulte las exclusiones médicas para este paciente
               </p>
             </div>
-            <button className="flex items-center gap-1.5 text-xs font-semibold bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-sm transition-colors whitespace-nowrap">
+            <button className="flex items-center gap-1.5 text-xs font-semibold bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors whitespace-nowrap">
               <Eye size={13} />
               Ver resumen
             </button>
@@ -314,7 +370,7 @@ export default function RecipeSection() {
                     <select
                       value={form.presentacion}
                       onChange={e => handleChange('presentacion', e.target.value)}
-                      className="w-full appearance-none border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white pr-8 transition-all"
+                      className="w-full appearance-none border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white pr-8 transition-all"
                     >
                       <option value="">Seleccionar presentación</option>
                       {PRESENTACIONES.map(p => <option key={p} value={p}>{p}</option>)}
@@ -372,14 +428,14 @@ export default function RecipeSection() {
 
           {/* ── Tabla: Listado de medicamentos ── */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-700 mb-3">Listado de medicamentos</h4>
+            <h4 className="text-sm font-semibold text-black mb-3">Listado de medicamentos</h4>
             <div className="border border-gray-100 rounded-xl overflow-hidden">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-gray-50 border-b border-gray-100">
-                    <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wide">Compuesto activo</th>
-                    <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wide">Medicamento</th>
-                    <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wide w-24">Cantidad</th>
+                    <th className="text-left px-4 py-3 text-xs font-semibold text-black uppercase tracking-wide">Compuesto activo</th>
+                    <th className="text-left px-4 py-3 text-xs font-semibold text-black uppercase tracking-wide">Medicamento</th>
+                    <th className="text-left px-4 py-3 text-xs font-semibold text-black uppercase tracking-wide w-24">Cantidad</th>
                     <th className="w-12 px-4 py-3" />
                   </tr>
                 </thead>
@@ -398,14 +454,14 @@ export default function RecipeSection() {
                         key={med.id}
                         className={`border-b border-gray-50 hover:bg-gray-50 transition-colors animate-fade-slide ${idx === medicamentos.length - 1 ? 'border-b-0' : ''}`}
                       >
-                        <td className="px-4 py-3 text-gray-700 font-medium">{med.compuestoActivo}</td>
-                        <td className="px-4 py-3 text-gray-600">
+                        <td className="px-4 py-3 text-black font-medium">{med.compuestoActivo}</td>
+                        <td className="px-4 py-3 text-black">
                           <div>{med.medicamento}</div>
                           {med.indicaciones && (
-                            <div className="text-xs text-gray-400 mt-0.5">{med.indicaciones}</div>
+                            <div className="text-xs text-black mt-0.5">{med.indicaciones}</div>
                           )}
                         </td>
-                        <td className="px-4 py-3 text-gray-600">{med.cantidad}</td>
+                        <td className="px-4 py-3 text-black">{med.cantidad}</td>
                         <td className="px-4 py-3">
                           {/* Botón eliminar fila */}
                           <button
@@ -423,24 +479,112 @@ export default function RecipeSection() {
             </div>
           </div>
 
-          {/* ── Tabla: Listado de insumos/equipo ── */}
+          {/* ── Insumos/equipo: formulario + tabla ───────────────
+              El formulario (select + cantidad + botón) aparece
+              sólo cuando hay sede seleccionada, igual que el
+              formulario de medicamentos. La tabla siempre se
+              muestra para que el usuario vea el listado. */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-700 mb-3">Listado de insumos</h4>
+            <h3 className="text-base font-semibold text-black mb-2">Insumos médicos</h3>
+
+            {/* ── Formulario de insumos: visible con sede seleccionada ── */}
+            {sedeSelected && (
+              <div className="animate-fade-slide mb-4 space-y-3">
+
+                {/* Fila: select de insumo + campo cantidad + botón agregar */}
+                <div className="flex flex-col sm:flex-row gap-3 items-end">
+
+                  {/* Select: insumo/equipo */}
+                  <div className="flex-1">
+                    <label className="block text-xs font-semibold text-black mb-1.5">
+                      Insumo / Equipo <span className="text-red-400">*</span>
+                    </label>
+                    <div className="relative">
+                      <select
+                        value={insumoSeleccionado}
+                        onChange={e => { setInsumoSeleccionado(e.target.value); if (insumoError) setInsumoError('') }}
+                        className="w-full appearance-none border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white pr-8 transition-all"
+                      >
+                        <option value="">Seleccionar insumo</option>
+                        {INSUMOS.map(ins => (
+                          <option key={ins} value={ins}>{ins}</option>
+                        ))}
+                      </select>
+                      <ChevronDown size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-black pointer-events-none" />
+                    </div>
+                  </div>
+
+                  {/* Input: cantidad */}
+                  <div className="w-full sm:w-28">
+                    <label className="block text-xs font-semibold text-black mb-1.5">
+                      Cantidad <span className="text-red-400">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      min="1"
+                      value={insumoCantidad}
+                      onChange={e => { setInsumoCantidad(e.target.value); if (insumoError) setInsumoError('') }}
+                      placeholder="Ej: 2"
+                      className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white transition-all"
+                    />
+                  </div>
+
+                  {/* Botón agregar insumo */}
+                  <button
+                    onClick={handleAgregarInsumo}
+                    className="flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors shadow-sm active:scale-95 whitespace-nowrap"
+                  >
+                    Agregar
+                  </button>
+                </div>
+
+                {/* Error de validación de insumos */}
+                {insumoError && (
+                  <p className="text-xs text-red-500 font-medium">{insumoError}</p>
+                )}
+              </div>
+            )}
+
+            {/* ── Tabla de insumos agregados ── */}
             <div className="border border-gray-100 rounded-xl overflow-hidden">
+              <h4 className="text-sm font-semibold text-black mb-3">Listado de insumos</h4>
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-gray-50 border-b border-gray-100">
-                    <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wide">Equipo</th>
-                    <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wide w-24">Cantidad</th>
+                    <th className="text-left px-4 py-3 text-xs font-semibold text-black uppercase tracking-wide">Equipo</th>
+                    <th className="text-left px-4 py-3 text-xs font-semibold text-black uppercase tracking-wide w-24">Cantidad</th>
+                    <th className="w-12 px-4 py-3" />
                   </tr>
                 </thead>
                 <tbody>
-                  {/* Estado vacío estático (sin funcionalidad de agregar por ahora) */}
-                  <tr>
-                    <td colSpan={2} className="text-center py-8 text-sm text-gray-400 italic">
-                      Añada un insumo a la lista
-                    </td>
-                  </tr>
+                  {/* Estado vacío */}
+                  {insumos.length === 0 ? (
+                    <tr>
+                      <td colSpan={3} className="text-center py-8 text-sm text-gray-400 italic">
+                        Añada un insumo a la lista
+                      </td>
+                    </tr>
+                  ) : (
+                    // Fila por cada insumo agregado
+                    insumos.map((ins, idx) => (
+                      <tr
+                        key={ins.id}
+                        className={`border-b border-gray-50 hover:bg-gray-50 transition-colors animate-fade-slide ${idx === insumos.length - 1 ? 'border-b-0' : ''}`}
+                      >
+                        <td className="px-4 py-3 text-black font-medium">{ins.equipo}</td>
+                        <td className="px-4 py-3 text-black">{ins.cantidad}</td>
+                        <td className="px-4 py-3">
+                          {/* Botón eliminar insumo */}
+                          <button
+                            onClick={() => handleEliminarInsumo(ins.id)}
+                            className="w-7 h-7 rounded-md flex items-center justify-center text-gray-300 hover:text-red-500 hover:bg-red-50 transition-colors"
+                          >
+                            <Trash2 size={14} />
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>
@@ -454,12 +598,12 @@ export default function RecipeSection() {
 
               {/* Encabezado de la sección */}
               <div className="flex items-center gap-2 pt-1">
-                <h4 className="text-sm font-semibold text-gray-800">Otros medicamentos</h4>
+                <h3 className="text-base font-semibold text-black mb-2">Otros medicamentos</h3>
               </div>
 
               {/* Campo: Nombre del medicamento */}
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1.5">
+                <label className="block text-xs font-semibold text-black mb-1.5">
                   Nombre del medicamento <span className="text-red-400">*</span>
                 </label>
                 <input
@@ -467,13 +611,13 @@ export default function RecipeSection() {
                   value={otroNombre}
                   onChange={e => { setOtroNombre(e.target.value); if (otroError) setOtroError('') }}
                   placeholder="Ej: Vitamina C 500mg"
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white transition-all"
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white transition-all"
                 />
               </div>
 
               {/* Campo: Indicaciones del otro medicamento */}
               <div>
-                <label className="block text-xs font-semibold text-gray-600 mb-1.5">
+                <label className="block text-xs font-semibold text-black mb-1.5">
                   Indicaciones
                 </label>
                 <input
@@ -481,7 +625,7 @@ export default function RecipeSection() {
                   value={otroIndicaciones}
                   onChange={e => setOtroIndicaciones(e.target.value)}
                   placeholder="Ej: 1 tableta diaria en ayunas"
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white transition-all"
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white transition-all"
                 />
               </div>
 
@@ -506,7 +650,7 @@ export default function RecipeSection() {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="bg-gray-50 border-b border-gray-100">
-                        <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wide">Récipe</th>
+                        <th className="text-left px-4 py-3 text-xs font-semibold text-black uppercase tracking-wide">Récipe</th>
                         <th className="w-12 px-4 py-3" />
                       </tr>
                     </thead>
