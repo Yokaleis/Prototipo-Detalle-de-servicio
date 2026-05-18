@@ -20,9 +20,9 @@ function ReadField({ label, value, className = '' }) {
   return (
     <div className={className}>
       {label && (
-        <label className="block text-xs font-semibold text-gray-500 mb-1">{label}</label>
+        <label className="block text-xs font-semibold text-black mb-1">{label}</label>
       )}
-      <div className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white min-h-[40px] flex items-center">
+      <div className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-black bg-white min-h-[40px] flex items-center">
         {value}
       </div>
     </div>
@@ -105,11 +105,11 @@ export default function InfoAfiliado() {
             <ReadField label="Plan" value="PSEM" />
           </div>
           <div className="col-span-9">
-            <div className="bg-red-50 border border-red-100 rounded-xl px-5 py-4 flex items-center gap-4">
+            <div className="bg-red-50 border border-red-100 rounded-md px-5 py-4 flex items-center gap-4">
               <p className="flex-1 text-sm font-semibold text-red-500">
                 Consulte las Condiciones de la Póliza
               </p>
-              <button className="flex items-center gap-1.5 bg-red-500 hover:bg-red-600 text-white text-xs font-semibold px-4 py-2 rounded-lg transition-colors whitespace-nowrap">
+              <button className="flex items-center gap-1.5 bg-red-500 hover:bg-red-600 text-white text-xs font-semibold px-4 py-2 rounded-sm transition-colors whitespace-nowrap">
                 <Eye size={13} />
                 Ver condiciones
               </button>
@@ -118,7 +118,7 @@ export default function InfoAfiliado() {
         </div>
 
         {/* Ramo / Contratante */}
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-black">
           <span className="font-semibold">Ramo:</span> Accidentes Personales Colectivos
           <span className="mx-3 text-gray-300">|</span>
           <span className="font-semibold">Contratante:</span> Grupo Venemergencia
@@ -133,11 +133,11 @@ export default function InfoAfiliado() {
             <ReadField label="Teléfono" value="02123456768" />
           </div>
           <div className="col-span-4">
-            <label className="block text-xs font-semibold text-gray-500 mb-1 flex items-center gap-1">
+            <label className="block text-xs font-semibold text-black mb-1 flex items-center gap-1">
               Correo electrónico
               <button
                 onClick={() => setEditingEmail(v => !v)}
-                className="ml-1 text-gray-400 hover:text-teal-600 transition-colors"
+                className="ml-1 text-black hover:text-teal-600 transition-colors"
               >
                 <Pencil size={11} />
               </button>
@@ -167,11 +167,11 @@ export default function InfoAfiliado() {
 
         {/* Dirección */}
         <div>
-          <label className="block text-xs font-semibold text-gray-500 mb-1 flex items-center gap-1">
+          <label className="block text-xs font-semibold text-black mb-1  items-center gap-1">
             Dirección
             <button
               onClick={() => setEditingDir(v => !v)}
-              className="ml-1 text-gray-400 hover:text-teal-600 transition-colors"
+              className="ml-1 text-black hover:text-teal-600 transition-colors"
             >
               <Pencil size={11} />
             </button>
@@ -186,7 +186,7 @@ export default function InfoAfiliado() {
               className="w-full border border-teal-400 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white"
             />
           ) : (
-            <div className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-600 bg-white">
+            <div className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-black bg-white">
               {direccion}
             </div>
           )}
@@ -202,30 +202,10 @@ export default function InfoAfiliado() {
         <div className="">
           <h4 className="text-base font-semibold text-black mb-4">Tripulación</h4>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <SelectField
-              label="Vehículo"
-              options={vehiculos}
-              value={vehiculo}
-              onChange={setVehiculo}
-            />
-            <SelectField
-              label="Médico"
-              options={medicos}
-              value={medico}
-              onChange={setMedico}
-            />
-            <SelectField
-              label="Tripulante"
-              options={tripulantes}
-              value={tripulante}
-              onChange={setTripulante}
-            />
-            <SelectField
-              label="Conductor"
-              options={conductores}
-              value={conductor}
-              onChange={setConductor}
-            />
+            <ReadField label="Ambulancia " value="Ambulancia 007" />
+            <ReadField label="Médico " value="Marcos Isaac Flores" />
+            <ReadField label="Tripulante " value="Richard José Blanco" />
+            <ReadField label="Conductor " value="Ana Karina Mendez" />
           </div>
         </div>
 

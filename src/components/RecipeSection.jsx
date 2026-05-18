@@ -21,10 +21,10 @@ import SedeBlockedModal from './SedeBlockedModal'
 // ── Constantes de datos ──────────────────────────────────────
 
 const SEDES = [
-  'Sede Central - Caracas',
-  'Sede Este - Miranda',
-  'Sede Oeste - Carabobo',
-  'Sede Norte - Vargas',
+  'UC - La Candelaria',
+  'UC - Maracay',
+  'UC - Lechería',
+  'UC - Bello Monte',
 ]
 
 const PRINCIPIOS = [
@@ -214,7 +214,7 @@ export default function RecipeSection() {
 
         {/* ── Cabecera de sección ── */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
-          <h3 className="text-base font-semibold text-gray-800">Récipe y medicamentos</h3>
+          <h3 className="text-base font-semibold text-gray-800">Medicamentos</h3>
           <button className="flex items-center gap-1.5 text-xs font-medium text-teal-600 border border-teal-200 bg-teal-50 hover:bg-teal-100 px-3 py-1.5 rounded-lg transition-colors">
             <Calculator size={13} />
             Calcular dosis
@@ -224,7 +224,7 @@ export default function RecipeSection() {
         <div className="p-5 space-y-5">
 
           {/* ── Alerta de exclusiones médicas ── */}
-          <div className="bg-red-50 border border-red-100 rounded-xl p-4 flex items-center gap-4">
+          <div className="bg-red-50 border border-red-100 rounded-md p-4 flex items-center gap-4">
             <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0">
               <AlertTriangle size={18} className="text-red-500" />
             </div>
@@ -233,7 +233,7 @@ export default function RecipeSection() {
                 Consulte las exclusiones médicas para este paciente
               </p>
             </div>
-            <button className="flex items-center gap-1.5 text-xs font-semibold bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors whitespace-nowrap">
+            <button className="flex items-center gap-1.5 text-xs font-semibold bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-sm transition-colors whitespace-nowrap">
               <Eye size={13} />
               Ver resumen
             </button>
@@ -243,12 +243,12 @@ export default function RecipeSection() {
               onChange → handleSedeChange que gestiona el bloqueo.
               Si hay ítems y el usuario cambia, abre el modal. */}
           <div>
-            <label className="block text-xs font-semibold text-gray-600 mb-1.5">Sede</label>
+            <label className="block text-xs font-semibold text-black mb-1.5">Sede</label>
             <div className="relative w-56">
               <select
                 value={sede}
                 onChange={handleSedeChange}
-                className="w-full appearance-none border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white pr-8 transition-all"
+                className="w-full appearance-none border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white pr-8 transition-all"
               >
                 <option value="">Sede</option>
                 {SEDES.map(s => (
@@ -289,14 +289,14 @@ export default function RecipeSection() {
 
                 {/* Campo: Principio activo */}
                 <div>
-                  <label className="block text-xs font-semibold text-gray-600 mb-1.5">
+                  <label className="block text-xs font-semibold text-black mb-1.5">
                     Principio activo <span className="text-red-400">*</span>
                   </label>
                   <div className="relative">
                     <select
                       value={form.principioActivo}
                       onChange={e => handleChange('principioActivo', e.target.value)}
-                      className="w-full appearance-none border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white pr-8 transition-all"
+                      className="w-full appearance-none border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white pr-8 transition-all"
                     >
                       <option value="">Seleccionar principio activo</option>
                       {PRINCIPIOS.map(p => <option key={p} value={p}>{p}</option>)}
@@ -307,14 +307,14 @@ export default function RecipeSection() {
 
                 {/* Campo: Presentación */}
                 <div>
-                  <label className="block text-xs font-semibold text-gray-600 mb-1.5">
+                  <label className="block text-xs font-semibold text-black mb-1.5">
                     Presentación <span className="text-red-400">*</span>
                   </label>
                   <div className="relative">
                     <select
                       value={form.presentacion}
                       onChange={e => handleChange('presentacion', e.target.value)}
-                      className="w-full appearance-none border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white pr-8 transition-all"
+                      className="w-full appearance-none border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white pr-8 transition-all"
                     >
                       <option value="">Seleccionar presentación</option>
                       {PRESENTACIONES.map(p => <option key={p} value={p}>{p}</option>)}
@@ -325,7 +325,7 @@ export default function RecipeSection() {
 
                 {/* Campo: Cantidad */}
                 <div>
-                  <label className="block text-xs font-semibold text-gray-600 mb-1.5">
+                  <label className="block text-xs font-semibold text-black mb-1.5">
                     Cantidad <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -334,13 +334,13 @@ export default function RecipeSection() {
                     value={form.cantidad}
                     onChange={e => handleChange('cantidad', e.target.value)}
                     placeholder="Ej: 30"
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white transition-all"
+                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white transition-all"
                   />
                 </div>
 
                 {/* Campo: Indicaciones */}
                 <div>
-                  <label className="block text-xs font-semibold text-gray-600 mb-1.5">
+                  <label className="block text-xs font-semibold text-black mb-1.5">
                     Indicaciones
                   </label>
                   <input
@@ -348,7 +348,7 @@ export default function RecipeSection() {
                     value={form.indicaciones}
                     onChange={e => handleChange('indicaciones', e.target.value)}
                     placeholder="Ej: 1 tableta cada 8 horas"
-                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white transition-all"
+                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white transition-all"
                   />
                 </div>
               </div>
@@ -364,7 +364,6 @@ export default function RecipeSection() {
                   onClick={handleAgregar}
                   className="flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors shadow-sm active:scale-95"
                 >
-                  <Plus size={15} />
                   Agregar
                 </button>
               </div>
@@ -497,7 +496,6 @@ export default function RecipeSection() {
                   onClick={handleAgregarOtro}
                   className="flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors shadow-sm active:scale-95"
                 >
-                  <Plus size={15} />
                   Agregar
                 </button>
               </div>
