@@ -280,8 +280,8 @@ export default function RecipeSection() {
         <div className="p-5 space-y-5">
 
           {/* ── Alerta de exclusiones médicas ── */}
-          <div className="bg-red-50 border border-red-100 rounded-xl p-4 flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0">
+          <div className="bg-red-50 border border-red-100 rounded-md p-4 flex items-center gap-4">
+            <div className="w-10 h-10 rounded-md bg-red-100 flex items-center justify-center shrink-0">
               <AlertTriangle size={18} className="text-red-500" />
             </div>
             <div className="flex-1">
@@ -289,7 +289,7 @@ export default function RecipeSection() {
                 Consulte las exclusiones médicas para este paciente
               </p>
             </div>
-            <button className="flex items-center gap-1.5 text-xs font-semibold bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors whitespace-nowrap">
+            <button className="flex items-center gap-1.5 text-xs font-semibold bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-sm transition-colors whitespace-nowrap">
               <Eye size={13} />
               Ver resumen
             </button>
@@ -325,7 +325,7 @@ export default function RecipeSection() {
 
           {/* ── Hint informativo cuando NO hay sede seleccionada ── */}
           {!sedeSelected && (
-            <div className="bg-emerald-50 border border-emerald-100 rounded-xl p-4 flex items-start gap-3">
+            <div className="bg-emerald-50 border border-emerald-100 rounded-md p-4 flex items-start gap-3">
               <Info size={16} className="text-emerald-500 mt-0.5 shrink-0" />
               <p className="text-xs text-emerald-700 leading-relaxed">
                 Antes de continuar con los medicamentos, selecciona primero la sede
@@ -546,8 +546,9 @@ export default function RecipeSection() {
             )}
 
             {/* ── Tabla de insumos agregados ── */}
+            <h4 className="text-sm font-semibold text-black mb-3">Listado de insumos</h4>
             <div className="border border-gray-100 rounded-xl overflow-hidden">
-              <h4 className="text-sm font-semibold text-black mb-3">Listado de insumos</h4>
+              
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-gray-50 border-b border-gray-100">
