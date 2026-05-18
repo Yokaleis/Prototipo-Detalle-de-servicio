@@ -1,14 +1,23 @@
-import Sidebar from './components/Sidebar'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+import { MedicoLayout } from './layouts/MedicoLayout'
 import AtencionDetail from './components/AtencionDetail'
-import { SidebarCopy } from './components/SidebarCopy'
+import AtencionTLD from './components/AtencionTLD'
+import AtencionPHD from './components/AtencionPHD'
 
 export default function App() {
   return (
-    <div className="flex h-screen overflow-hidden bg-[#f0f2f5]">
-      <SidebarCopy />
-      <div className="flex-1 overflow-y-auto">
-        <AtencionDetail />
-      </div>
-    </div>
+    <>
+    <BrowserRouter>
+    <Routes>
+      <Route element={<MedicoLayout/>}>
+      <Route path='/' index element={<AtencionDetail/>}/>
+      <Route path='/tld' element={<AtencionTLD/>}/>
+      <Route path='/phd' element={<AtencionPHD/>}/>
+      </Route>
+    </Routes>
+    </BrowserRouter>
+    
+    </>
   )
 }

@@ -18,11 +18,11 @@ export default function AtencionDetail() {
       {/* Top bar */}
       <div className="bg-white border-b border-gray-100 px-6 py-3 flex items-center justify-between sticky top-0 z-10 shadow-sm">
         <div className="text-xs text-gray-400 flex items-center gap-1">
-          <span>Atenciones</span>
+          <span>Servicios</span>
+                    <span>/</span>
+                    <span>Listado de servicios</span>
           <span>/</span>
-          <span>Listado de atenciones</span>
-          <span>/</span>
-          <span className="text-gray-600 font-medium">Atenciones #0001122</span>
+          <span className="text-gray-600 font-medium">Servicio AMD #26051097178</span>
         </div>
         <div className="flex items-center gap-3">
           <button className="w-7 h-7 rounded-md bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors">
@@ -48,7 +48,7 @@ export default function AtencionDetail() {
             <button className="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition-colors">
               <ArrowLeft size={14} className="text-gray-500" />
             </button>
-            <h1 className="text-2xl font-bold text-gray-800">Servicio AMD #26051097175</h1>
+            <h1 className="text-2xl font-bold text-gray-800">Servicio AMD #26051097178</h1>
           </div>
 
           {/* Phone */}
