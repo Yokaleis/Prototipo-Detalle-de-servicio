@@ -103,25 +103,25 @@ export default function AtencionDetail() {
 
         {/* Exámenes paraclínicos */}
         <div>
-          <label className="block text-xs font-semibold text-gray-600 mb-1.5">
+          <label className="block text-xs font-semibold text-black mb-1.5">
             Exámenes paraclínicos
           </label>
           <input
             type="text"
             placeholder="Ej: 1 tableta diaria en ayunas"
-            className="w-full border border-gray-200 rounded-lg px-3 py-2.5 h-[80px] text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white transition-all"
+            className="w-full border border-gray-200 rounded-lg px-3 py-2.5 h-[80px] text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white transition-all"
           />
         </div>
 
         {/* Recomendaciones médicas */}
         <div>
-          <label className="block text-xs font-semibold text-gray-600 mb-1.5">
+          <label className="block text-xs font-semibold text-black mb-1.5">
             Recomendaciones médicas
           </label>
           <input
             type="text"
             placeholder="Ej: 1 tableta diaria en ayunas"
-            className="w-full border border-gray-200 rounded-lg px-3 py-2.5 h-[80px] text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white transition-all"
+            className="w-full border border-gray-200 rounded-lg px-3 py-2.5 h-[80px] text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white transition-all"
           />
         </div>
 
@@ -133,10 +133,10 @@ export default function AtencionDetail() {
 
         {/* Especialistas selector */}
         <div>
-          <label className="block text-xs font-semibold text-gray-600 mb-1.5">Especialidades</label>
+          <label className="block text-xs font-semibold text-black mb-1.5">Especialidades</label>
           <div className="relative w-56">
             <select
-              className="w-100 appearance-none border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white pr-8 transition-all"
+              className="w-100 appearance-none border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white pr-8 transition-all"
             >
               <option value="">Seleccione una especialidad</option>
               <option>Gastroenterologo</option>
@@ -146,13 +146,13 @@ export default function AtencionDetail() {
         </div>
         {/* Comentarios */}
         <div>
-          <label className="block text-xs font-semibold text-gray-600 mb-1.5">
+          <label className="block text-xs font-semibold text-black mb-1.5">
             Comentarios
           </label>
           <input
             type="text"
             placeholder="Ej: 1 tableta diaria en ayunas"
-            className="w-full border border-gray-200 rounded-lg px-3 py-2.5 h-[80px] text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white transition-all"
+            className="w-full border border-gray-200 rounded-lg px-3 py-2.5 h-[80px] text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white transition-all"
           />
         </div>
         
@@ -161,7 +161,7 @@ export default function AtencionDetail() {
 
          {/* Añadir servicio sucesivo */}
         <div className="bg-white rounded-xl">
-          <h3 className="text-base font-semibold text-gray-800 mb-3">Añadir servicio sucesivo</h3>
+          <h3 className="text-base font-semibold text-black mb-3">Añadir servicio sucesivo</h3>
           <div className="flex gap-6">
             <label className="flex items-center gap-2 cursor-pointer">
               <input
@@ -191,7 +191,7 @@ export default function AtencionDetail() {
 
         {/* Reposo médico */}
         <div className="bg-gray-100 rounded-xl border border-gray-100 shadow-sm p-5">
-          <h3 className="text-base font-semibold text-gray-800 mb-1">Reposo médico</h3>
+          <h3 className="text-base font-semibold text-black mb-1">Reposo médico</h3>
           <p className="text-xs text-gray-400 mb-3">Una vez guardada esta información se generará un reposo médico.</p>
           <label className="text-xs font-medium text-gray-600 mb-1.5 block">Selecciona los días de reposo</label>
           <div className="relative w-48">
@@ -214,8 +214,8 @@ export default function AtencionDetail() {
 
         {/* Cancelación de servicio */}
         <div className="bg-white rounded-xl">
-          <h3 className="text-base font-semibold text-gray-800 mb-3">Cancelación de servicio</h3>
-          <p className="text-sm text-gray-500 mb-3">¿Desea cancelar el servicio?</p>
+          <h3 className="text-base font-semibold text-black mb-3">Cancelación de servicio</h3>
+          <p className="text-sm text-black mb-3">¿Desea cancelar el servicio?</p>
           <div className="flex gap-6">
             <label className="flex items-center gap-2 cursor-pointer">
               <input
@@ -257,7 +257,7 @@ export default function AtencionDetail() {
 
         {/* Action buttons */}
         <div className="flex items-center gap-3 pb-8">
-          <button className="px-6 py-2.5 rounded-lg border border-gray-300 text-sm font-semibold text-gray-600 hover:bg-gray-50 transition-colors">
+          <button className="px-6 py-2.5 rounded-lg border bg-gray-200 text-sm font-semibold text-black hover:bg-gray-50 transition-colors">
             Cancelar
           </button>
           <button className="px-6 py-2.5 rounded-lg bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold transition-colors shadow-sm">
