@@ -74,7 +74,7 @@ export default function InfoAfiliado() {
     <section className="bg-white rounded-xl overflow-hidden">
 
       {/* ── Section title ── */}
-      <div className="px-5 py-4">
+      <div className="">
         <h3 className="text-base font-semibold text-black">Información del afiliado</h3>
       </div>
 
