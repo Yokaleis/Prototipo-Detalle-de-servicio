@@ -159,7 +159,6 @@ export default function InfoAfiliado() {
           </div>
           <div className="col-span-2">
             <button className="w-full flex items-center justify-center gap-1.5 border border-teal-500 text-teal-600 hover:bg-teal-50 text-xs font-semibold px-3 py-2.5 rounded-lg transition-colors">
-              <Send size={12} />
               Reenviar informe
             </button>
           </div>
@@ -207,6 +206,93 @@ export default function InfoAfiliado() {
             <ReadField label="Tripulante " value="Richard José Blanco" />
             <ReadField label="Conductor " value="Ana Karina Mendez" />
           </div>
+        </div>
+
+        {/* Divider */}
+        <div className="border bottom-1"></div>
+        {/* servicio externo */}
+        <section>
+          <h4 className="text-base font-semibold text-black mb-4">Asignar un proveedor externo</h4>
+          <div className="grid grid-cols-12 gap-3">
+            <div className="col-span-4" >
+              <ReadField label="Creado por " value="Alfonoso Espinoza" />
+            </div>
+            <div className="col-span-4">
+              <ReadField label="Atendido por" value="Aaron Martínez" />
+            </div>
+          </div>
+        </section>
+
+        {/* servicio programado */}
+        <section>
+          <h4 className="text-base font-semibold text-black mb-4">Servicio programado</h4>
+          <div className="grid grid-cols-12 gap-3 items-end">
+            <div className="col-span-4" >
+              <ReadField label="Fecha" value="19/05/2026" />
+            </div>
+            <div className="col-span-2">
+              <ReadField label="Hora" value="7:58 AM" />
+            </div>
+            <div className="col-span-2">
+            <button className="w-full border border-teal-500 text-teal-600 hover:bg-teal-50 text-xs font-semibold px-3 py-2.5 rounded-lg transition-colors">
+              Reprogramar
+            </button>
+          </div>
+          </div>
+        </section>
+        <section>
+          <div className="grid grid-cols-12 gap-3 items-end mb-4">
+            <div className="col-span-4" >
+              <ReadField label="Comienzo de servicio" value="19/05/2026" />
+            </div>
+            <div className="col-span-2">
+              <ReadField label="Hora" value="7:58 AM" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-12 gap-3 items-end">
+            <div className="col-span-4" >
+              <ReadField label="Finalización de servicio" value="19/05/2026" />
+            </div>
+            <div className="col-span-2">
+              <ReadField label="Hora" value="7:58 AM" />
+            </div>
+          </div>
+          
+        </section>
+        {/* Dirección */}
+        <div>
+          <label className="block text-xs font-semibold text-black mb-1  items-center gap-1">
+            Dirección
+          </label>
+          {editingDir ? (
+            <input
+              type="text"
+              value={direccion}
+              onChange={e => setDireccion(e.target.value)}
+              onBlur={() => setEditingDir(false)}
+              autoFocus
+              className="w-full border border-teal-400 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white"
+            />
+          ) : (
+            <div className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-black bg-white">
+              {direccion}
+            </div>
+          )}
+        </div>
+        {/* Motivo */}
+        <div>
+          <label className="block text-xs font-semibold text-black mb-1  items-center gap-1">
+            Motivo
+          </label>
+
+            <textarea
+              type="text"
+              value="Paciente femenina de 36 años solicita evaluación por síntomas respiratorios agudos. Refiere tos seca persistente, dificultad para respirar profundamente y sensación de presión torácica, con predominio nocturno. Los síntomas han interferido con el descanso y las actividades cotidianas. No presenta fiebre elevada ni expectoración. Antecedentes de bronquitis viral y alergias estacionales. No fuma ni ha estado expuesta a agentes irritantes recientes. Solicita valoración médica para descartar complicaciones pulmonares y recibir tratamiento sintomático que le permita recuperar su bienestar funcional."
+              
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white resize-y"
+            />
+         
         </div>
 
       </div>
