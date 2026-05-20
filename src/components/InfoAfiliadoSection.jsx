@@ -281,7 +281,7 @@ export default function InfoAfiliado() {
           )}
         </div>
         {/* Motivo */}
-        <div>
+        <div className="grid gap-1">
           <label className="block text-xs font-semibold text-black mb-1  items-center gap-1">
             Motivo
           </label>
@@ -292,7 +292,7 @@ export default function InfoAfiliado() {
               
               className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white resize-y"
             />
-         
+         <span className="text-xs flex justify-end">Máximo 3000 caracteres</span>
         </div>
 
       </div>

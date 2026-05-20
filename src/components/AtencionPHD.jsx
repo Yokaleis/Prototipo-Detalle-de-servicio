@@ -4,10 +4,10 @@ import InfoAfiliado from './InfoAfiliadoSection'
 import RecipeSection from './RecipeSection'
 
 export default function AtencionPHD() {
-     const [activeTag, setActiveTag] = useState('EMD')
+    const [activeTag, setActiveTag] = useState('EMD')
     const [cancelar, setCancelar] = useState(null)
-      const [seguimiento, setSeguimiento] = useState(false)
-      const [reposo, setReposo] = useState('24hrs, 48hrs, 72hrs')
+    const [seguimiento, setSeguimiento] = useState(false)
+    const [reposo, setReposo] = useState('24hrs, 48hrs, 72hrs')
     return (
         <div className="min-h-screen bg-[#fff]">
 
@@ -58,33 +58,30 @@ export default function AtencionPHD() {
                 {/* Divider */}
                 <div className="border bottom-1"></div>
                 {/* Exámenes paraclínicos */}
-                <div>
+                <div className="grid gap-1">
                     <label className="block text-xs font-semibold text-black mb-1.5">
                         Exámenes paraclínicos
                     </label>
-                    <input
+                    <textarea
                         type="text"
-                        placeholder="Ej: 1 tableta diaria en ayunas"
-                        className="w-full border border-gray-200 rounded-lg px-3 py-2.5 h-[80px] text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white transition-all"
-                    />
+                        placeholder="Indique los exámenes aquí"
+                        className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white resize-y" />
+                    <span className="text-xs flex justify-end">Máximo 3000 caracteres</span>
                 </div>
                 {/* Divider */}
                 <div className="border bottom-1"></div>
 
                 {/* Recomendaciones médicas */}
-                <div>
+                <div className="grid gap-1">
                     <label className="block text-xs font-semibold text-black mb-1.5">
                         Recomendaciones médicas
                     </label>
-                    <input
+                    <textarea
                         type="text"
-                        placeholder="Ej: 1 tableta diaria en ayunas"
-                        className="w-full border border-gray-200 rounded-lg px-3 py-2.5 h-[80px] text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white transition-all"
-                    />
+                        placeholder="Indique las recomendaciones aquí"
+                        className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white resize-y" />
+                    <span className="text-xs flex justify-end">Máximo 3000 caracteres</span>
                 </div>
-
-                {/* Divider */}
-                <div className="border bottom-1"></div>
 
                 {/* Referencias a especialistas */}
                 <h3 className="text-base font-semibold text-gray-800">Referencias a especialistas</h3>
@@ -103,15 +100,15 @@ export default function AtencionPHD() {
                     </div>
                 </div>
                 {/* Comentarios */}
-                <div>
+                <div className="grid gap-1">
                     <label className="block text-xs font-semibold text-black mb-1.5">
                         Comentarios
                     </label>
-                    <input
+                    <textarea
                         type="text"
                         placeholder="Ej: 1 tableta diaria en ayunas"
-                        className="w-full border border-gray-200 rounded-lg px-3 py-2.5 h-[80px] text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white transition-all"
-                    />
+                        className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:ring-2 focus:ring-teal-400 bg-white resize-y" />
+                    <span className="text-xs flex justify-end">Máximo 3000 caracteres</span>
                 </div>
 
                 {/* Divider */}
